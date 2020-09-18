@@ -1,0 +1,23 @@
+# to use nuclei we need "waybackurls"
+
+install waybackurls ==> https://youtu.be/_1u1FP9qKv4
+
+# install nuclei ==> https://youtu.be/m2EM-dflUHs
+
+===========================================================================================================================================
+commands==
+
+# find all the urls of your target & save them in a .txt file
+
+echo "yourtarget.com" | waybackurls | tee target.txt
+
+# run the .txt file with nuclei for find bugs
+
+nuclei -l target.txt -t /root/nuclei-templates/ -v {for use all the templats at once}
+nuclei -l target.txt -t /root/nuclei-templates/vulnerabilities -v {for finding vulnerabilities}
+nuclei -l target.txt -t /root/nuclei-templates/cves -v {for all the new cve bugs}
+
+# Update nuclei-templates/
+
+nuclei -update-templates
+=============================================================================================================================================
